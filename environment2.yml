@@ -1,0 +1,10 @@
+name: pix2pix
+channels:
+- pytorch
+- defaults
+dependencies:
+- python=3.8
+- pytorch=1.12.1 ## for RTX3070
+- scipy
+- pip
+
