@@ -29,7 +29,8 @@ COPY pip_requirements.txt /app/
 #RUN pip install tokenizers
 #RUN pip install transformers
 RUN pip install opencv-python
-RUN pip install --force-reinstall torch==1.12.1+cu113 --extra-index-url https://download.pytorch.org/whl/
+#RUN pip install --force-reinstall torch==1.12.1+cu113 --extra-index-url https://download.pytorch.org/whl/
+
 RUN pip install -r /app/pip_requirements.txt
 
 # COPY . /app/
