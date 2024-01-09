@@ -30,11 +30,12 @@ if not args.no_multiprocessing:
     pool=Pool()
 
 for sp in splits:
-    #img_fold_A = os.path.join(args.fold_A, sp)
-    img_fold_A = args.fold_A
+    print(sp)
+    img_fold_A = os.path.join(args.fold_A, sp)
+    #img_fold_A = args.fold_A
     print(img_fold_A)
-    #img_fold_B = os.path.join(args.fold_B, sp)
-    img_fold_B = args.fold_B
+    img_fold_B = os.path.join(args.fold_B, sp)
+    #img_fold_B = args.fold_B
     print(img_fold_B)
     img_list = os.listdir(img_fold_A)
     if args.use_AB:
@@ -60,6 +61,7 @@ for sp in splits:
             if args.use_AB:
                 name_AB = name_AB.replace('_A.', '.')  # remove _A
             path_AB = os.path.join(img_fold_AB, name_AB)
+            print(path_AB)
             if not args.no_multiprocessing:
                 pool.apply_async(image_write, args=(path_A, path_B, path_AB))
             else:
@@ -67,6 +69,7 @@ for sp in splits:
                 im_B = cv2.imread(path_B, 1) # python2: cv2.CV_LOAD_IMAGE_COLOR; python3: cv2.IMREAD_COLOR
                 im_AB = np.concatenate([im_A, im_B], 1)
                 cv2.imwrite(path_AB, im_AB)
+                print('write')
 if not args.no_multiprocessing:
     pool.close()
     pool.join()
